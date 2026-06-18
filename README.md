@@ -26,9 +26,33 @@ file.close()
 Затем перейдите в эту директорию и создайте в ней три пустых файла:
 file1.txt, file2.txt и file3.txt. Наконец, выведите список файлов в
 директории на экран.
+
+```
+import os
+
+files = os.listdir("./")
+print(files)
+```
+
 4 Создайте шаблон template.html, который будет содержать HTML-код
 для отображения списка пользователей. Шаблон должен использовать
 цикл for для перебора элементов списка, и выводить имя и email
 каждого пользователя. Затем создайте список пользователей в виде
 списка словарей, передайте его в шаблон и отобразите результат на
 экране.
+
+```
+from jinja2 import Environment, FileSystemLoader
+
+users_data = [
+    {"name": "Иван Иванов", "email": "ivan.ivanov@example.com"},
+    {"name": "Мария Петрова", "email": "maria.petrova@example.com"},
+    {"name": "Алексей Сидоров", "email": "alex.sidorov@example.com"},
+    {"name": "Елена Смирнова", "email": "elena.smirnova@example.com"}
+]
+
+env = Environment(loader=FileSystemLoader('.'))
+template = env.get_template('template.html')
+rendered_html = template.render(users=users_data)
+print(rendered_html)
+```
